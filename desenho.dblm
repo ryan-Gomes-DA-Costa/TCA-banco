@@ -1,0 +1,79 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+
+Table user {
+  id integer [primary key]
+  username varchar
+}
+
+Table director {
+  id integer [primary key]
+  name varchar
+}
+
+Table movie_director {
+  director_id integer
+  movie_id integer
+}
+Ref: movie_director.director_id > director.id
+Ref: movie_director.movie_id > movie.id
+
+Table actor {
+  id integer [primary key]
+  name varchar
+}
+
+Table movie_actor {
+  actor_id integer
+  movie_id integer
+}
+Ref: movie_actor.actor_id > actor.id
+Ref: movie_actor.movie_id > movie.id
+
+Table movie {
+  id integer [primary key]
+  name varchar
+  synopsis varchar
+  release_date timestamp
+}
+
+
+Table genre {
+  id integer [primary key]
+  name varchar
+}
+
+Table genre_movie {
+  movie_id integer 
+  genre_id integer 
+}
+Ref: genre_movie.movie_id > movie.id
+Ref: genre_movie.genre_id > genre.id
+
+Table rating {
+  id integer [primary key]
+  user_id integer [not null]
+  movie_id integer [not null]
+  rating integer 
+  review varchar
+}
+Ref: rating.user_id > user.id
+Ref: rating.movie_id > movie.id
+
+Table like {
+  id integer [primary key]
+  user_id integer [not null]
+  movie_id integer [not null]
+  like boolean
+}
+Ref: like.user_id > user.id
+Ref: like.movie_id > movie.id
+
+Table review_like {
+  review_id integer
+  user_id integer
+  like boolean
+}
+Ref: review_like.review_id > rating.id
+Ref: review_like.user_id > user.id
