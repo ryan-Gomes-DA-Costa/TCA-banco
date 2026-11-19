@@ -8,6 +8,7 @@ CREATE TABLE movie (
 CREATE TABLE reviewer (
   id SERIAL PRIMARY KEY,
   name VARCHAR(180) NOT NULL,
+  password VARCHAR(20) UNIQUE,
   email VARCHAR(180) UNIQUE
 );
 
