@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; padding: 0 10px; }
+        form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding: 15px; border: 1px solid #ccc; }
+        input, textarea, button { padding: 8px; font-size: 16px; }
+        button { cursor: pointer; background-color: #007bff; color: white; border: none; }
+        button:hover { background-color: #0056b3; }
+        .noticia-card { border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 4px; }
+        .actions { margin-top: 10px; }
+        .btn-edit { background-color: #ffc107; color: black; margin-right: 5px; }
+        #mensagem { margin-bottom: 10px; color: green; font-weight: bold; }
+        .oculto { display: none; }
+    </style>
+</head>
+<body>
+
+    <h2>Gerenciador de Notícias (CRUD)</h2>
+    <h3>Editar Notícia</h3>
+    <div id="mensagem">Escolha uma notícia para editar.</div>
+    
+    <!-- Formulário para Editar -->
+    <form id="noticiaForm" class="oculto">    
+        <input type="hidden" id="noticiaId">
+        <input type="text" id="noticiaTitle" placeholder="Título da notícia" required>
+        <textarea id="noticiaBody" placeholder="Conteúdo da notícia" rows="3" required></textarea>
+        <button type="submit" id="submitBtn">Alterar notícia</button>
+    </form>
+
+    <div id="noticiasContainer">   
+    </div>
+
+    <script>
+        
+        const noticiaForm = document.querySelector('#noticiaForm');
+        const noticiaIdInput = document.querySelector('#noticiaId');
+        const noticiaTitleInput = document.querySelector('#noticiaTitle');
+        const noticiaBodyInput = document.querySelector('#noticiaBody');
+        const submitBtn = document.querySelector('#submitBtn');
+        const noticiasContainer = document.querySelector('#noticiasContainer');
+        const mensagem = document.querySelector('#mensagem');
+        
+        const PUBLISHABLE_KEY = 'sb_publishable_hfoApgDMBkWyKsFH6CNI8g_PCJ3dFsE'
+        const API_URL = 'https://utwkyqjfrzqbkqmfunki.supabase.co/rest/v1/noticia';
+
+        //Json com os dados do servidor será armazenado nesta variável
+        let localNoticias = [];
+        
+        //Ouvintes de eventos
+        noticiaForm.addEventListener('submit', updateNoticia);
+        
+
+        // 1. READ - Buscar as noticias *********
+        async function buscarNoticias() {
+            try {
+                const response = await fetch(`${API_URL}`, {
+                    headers: {
+                        apikey: PUBLISHABLE_KEY
+                    }
+                });
+                localNoticias = await response.json();
+                renderNoticias();
+            } catch (error) {
+                noticiasContainer.innerHTML = 'Erro ao carregar os dados.';
+            }
+        }
+
+        // Renderizar os elementos na tela
+        function renderNoticias() {
+            if (localNoticias.length === 0) {
+                noticiasContainer.innerHTML = '<p>Nenhuma notícia encontrada.</p>';
+                return;
+            }
+
+            noticiasContainer.innerHTML = '';
+            localNoticias.forEach(noticia => {
+                noticiasContainer.innerHTML += `
+                    <div class="noticia-card" id="noticia-${noticia.id}">
+                        <h3>${noticia.titulo}</h3>
+                        <p>${noticia.corpo}</p>
+                        <div class="actions">
+                            <button class="btn-edit" onclick="prepararEdit(${noticia.id})">Editar</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+       
+
+        // Preenche o formulário com os dados da noticia selecionada para edição
+        function prepararEdit(id) {
+            const noticia = localNoticias.find(n => n.id === id);
+            if (noticia) {
+                noticiaForm.classList.remove('oculto');
+                noticiasContainer.classList.add('oculto');
+                mensagem.innerHTML = 'Informe os dados que serão alterados';
+
+                noticiaIdInput.value = noticia.id;
+                noticiaTitleInput.value = noticia.titulo;
+                noticiaBodyInput.value = noticia.corpo;
+                          
+            }
+        }
+
+        // 3. UPDATE - Função que envia o PUT para a API *********
+        async function updateNoticia(e) {
+            e.preventDefault(); // Impede o HTML de recarregar a página inteira
+            
+            const id = noticiaIdInput.value;
+            const noticiaData = {
+                titulo: noticiaTitleInput.value,
+                corpo: noticiaBodyInput.value
+            };
+
+            try {
+                const url = `${API_URL}?id=eq.${id}`;
+                const response = await fetch(url, {
+                    method: 'PATCH',
+                    headers: {    
+                         apikey: PUBLISHABLE_KEY,
+                        'Content-Type': 'application/json',  
+                         Prefer:'return=representation'
+                    },
+                    body: JSON.stringify(noticiaData)
+                });
+                const updatedNoticia = await response.json();
+                
+                noticiaForm.classList.add('oculto');
+                noticiasContainer.classList.remove('oculto');
+                mensagem.innerHTML = `Notícia alterada com sucesso!<br>
+                                    Escolha outra notícia para editar.`;
+                buscarNoticias(); // Atualiza a lista de notícias após a alteração
+            } catch (error) {
+                console.error('Erro ao alterar notícia:', error);
+            }
+        }
+
+        buscarNoticias(); // Carrega as notícias ao iniciar a página
+    </script>
+</body>
+</html>
