@@ -10,12 +10,15 @@ async function requisicao(caminho, opcoes = {}) {
         }
     });
 
+    // lê como texto: respostas de POST/PATCH/DELETE (return=minimal) vêm sem corpo
+    const texto = await response.text();
+    const dados = texto ? JSON.parse(texto) : null;
+
     if (!response.ok) {
-        const erro = await response.json();
-        throw new Error(erro.message);
+        throw new Error(dados?.message ?? `Erro ${response.status}`);
     }
 
-    return response.status === 204 ? null : response.json();
+    return dados;
 }
 
 export const listar = (caminho) => requisicao(caminho);
