@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+  <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; padding: 0 10px; }
+        form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding: 15px; border: 1px solid #ccc; }
+        input, textarea, button { padding: 8px; font-size: 16px; }
+        button { cursor: pointer; background-color: #007bff; color: white; border: none; }
+        button:hover { background-color: #0056b3; }
+        #mensagem { margin-bottom: 10px; color: green; font-weight: bold; }   
+    </style>
+<body>
+    <h2>Login</h2>
+    <div id="mensagem"></div>
+    <form id="login_Form">
+        <input type="email" id="login_email" placeholder="Email" required>
+        <input type="password" id="login_senha" placeholder="Senha" required>
+        <button type="submit">Entrar</button>
+    </form>
+    <a href="account.html">Criar conta</a>
+    <script type="module" src="login.js"></script>
+</body>
+</html>
