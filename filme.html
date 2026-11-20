@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filme</title>
+    <link rel="stylesheet" href="css/modern-normalize.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js/components.js"></script>
+    <script type="module" src="js/filme.js"></script>
+</head>
+<body>
+    <site-header></site-header>
+    <site-nav></site-nav>
+    <main>
+        <a href="index.html">&larr; Voltar</a>
+
+        <section id="detalhes_filme"></section>
+
+        <div id="mensagem"></div>
+
+        <h3>Reviews</h3>
+        <ul id="lista_reviews" class="lista-reviews"></ul>
+
+        <section id="area_form">
+            <h3 id="titulo_form">Escrever review</h3>
+            <form id="review_Form">
+                <input type="hidden" id="review_id">
+                <input type="number" id="rating" min="1" max="5" placeholder="Nota (1 a 5)" required>
+                <textarea id="review_texto" placeholder="Escreva sua review"></textarea>
+                <label><input type="checkbox" id="heart"> ❤️ Favorito</label>
+                <button type="submit" id="submitBtn">Enviar review</button>
+                <button type="button" id="cancelarBtn" hidden>Cancelar edição</button>
+            </form>
+        </section>
+    </main>
+    <site-footer></site-footer>
+</body>
+</html>
