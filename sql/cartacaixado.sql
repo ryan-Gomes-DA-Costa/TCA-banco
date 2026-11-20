@@ -54,10 +54,12 @@ CREATE TABLE movie_genre (
 CREATE TABLE review (
   id SERIAL PRIMARY KEY,
   reviewer_id INT NOT NULL,
+  movie_id INT NOT NULL,
   rating INTEGER,
   review TEXT,
   heart BOOLEAN,
-  FOREIGN KEY (reviewer_id) REFERENCES reviewer(id)
+  FOREIGN KEY (reviewer_id) REFERENCES reviewer(id),
+  FOREIGN KEY (movie_id) REFERENCES movie(id)
 );
 
 --b@ncodedAdos
