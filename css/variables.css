@@ -1,0 +1,19 @@
+:root {
+    --cor-fundo: #14181c;
+    --cor-painel: #1f2630;
+    --cor-painel-2: #2c3440;
+    --cor-borda: #3b4654;
+
+    --cor-texto: #99aabb;
+    --cor-titulo: #ffffff;
+
+    --cor-verde: #00e054;
+    --cor-verde-escuro: #00b844;
+    --cor-laranja: #ff8000;
+    --cor-azul: #40bcf4;
+    --cor-perigo: #e5534b;
+
+    --espaco: 1rem;
+    --raio: 6px;
+    --largura-max: 820px;
+}

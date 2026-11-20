@@ -12,7 +12,6 @@ const mensagem = document.querySelector('#mensagem');
 const area_form = document.querySelector('#area_form');
 const form = document.querySelector('#review_Form');
 const review_id = document.querySelector('#review_id');
-const rating = document.querySelector('#rating');
 const review_texto = document.querySelector('#review_texto');
 const heart = document.querySelector('#heart');
 const titulo_form = document.querySelector('#titulo_form');
@@ -105,7 +104,7 @@ lista_reviews.addEventListener('click', async (e) => {
     if (botao.dataset.acao === 'editar') {
         const r = lista_reviews._dados.find(x => x.id === id);
         review_id.value = r.id;
-        rating.value = r.rating;
+        document.querySelector(`#estrela${r.rating}`).checked = true;
         review_texto.value = r.review ?? '';
         heart.checked = r.heart;
         titulo_form.textContent = 'Editar review';
@@ -131,8 +130,10 @@ if (form) {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
+        const nota = document.querySelector('input[name="rating"]:checked');
+
         const dados = {
-            rating: Number(rating.value),
+            rating: Number(nota.value),
             review: review_texto.value,
             heart: heart.checked
         };

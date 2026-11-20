@@ -1,0 +1,122 @@
+body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+site-header,
+site-nav,
+site-footer {
+    display: block;
+}
+
+main {
+    flex: 1;
+    width: 100%;
+    max-width: var(--largura-max);
+    margin: 0 auto;
+    padding: 1.5rem var(--espaco);
+}
+
+h2, h3 {
+    color: var(--cor-titulo);
+    font-weight: 600;
+}
+
+h2 {
+    margin-top: 1rem;
+}
+
+h3 {
+    margin-top: 2rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--cor-borda);
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cor-texto);
+}
+
+a {
+    color: var(--cor-azul);
+}
+
+/* header */
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: var(--cor-fundo);
+    padding: 1.25rem var(--espaco) 0.75rem;
+}
+
+.site-header h1 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--cor-titulo);
+    letter-spacing: 0.05em;
+}
+
+.logo-dots {
+    display: flex;
+}
+
+.logo-dots i {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    margin-left: -5px;
+}
+
+.logo-dots i:nth-child(1) { background: var(--cor-laranja); margin-left: 0; }
+.logo-dots i:nth-child(2) { background: var(--cor-verde); }
+.logo-dots i:nth-child(3) { background: var(--cor-azul); }
+
+/* nav */
+.site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    background: var(--cor-painel-2);
+    padding: 0.7rem var(--espaco);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.site-nav a {
+    color: var(--cor-texto);
+    text-decoration: none;
+}
+
+.site-nav a:hover {
+    color: var(--cor-titulo);
+}
+
+.nav-usuario {
+    color: var(--cor-verde);
+}
+
+/* footer */
+.site-footer {
+    background: var(--cor-painel);
+    border-top: 1px solid var(--cor-borda);
+    text-align: center;
+    padding: 1.25rem var(--espaco);
+    font-size: 0.85rem;
+}
+
+.site-footer p {
+    margin: 0;
+}

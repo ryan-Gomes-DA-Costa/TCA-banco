@@ -1,0 +1,223 @@
+/* formulários em geral (login, conta) */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: var(--cor-painel);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--cor-titulo);
+    background: var(--cor-fundo);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--cor-verde);
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+/* botões */
+button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--cor-fundo);
+    background: var(--cor-verde);
+    border: none;
+    border-radius: var(--raio);
+}
+
+button:hover {
+    background: var(--cor-verde-escuro);
+}
+
+button.secundario,
+button[data-acao="editar"] {
+    color: var(--cor-texto);
+    background: transparent;
+    border: 1px solid var(--cor-borda);
+}
+
+button.secundario:hover,
+button[data-acao="editar"]:hover {
+    color: var(--cor-titulo);
+    background: var(--cor-painel-2);
+}
+
+button[data-acao="excluir"] {
+    color: var(--cor-perigo);
+    background: transparent;
+    border: 1px solid var(--cor-perigo);
+}
+
+button[data-acao="excluir"]:hover {
+    color: white;
+    background: var(--cor-perigo);
+}
+
+/* mensagem de sucesso/erro */
+#mensagem {
+    margin: 0.75rem 0;
+    color: var(--cor-verde);
+    font-weight: 600;
+}
+
+/* ---------- formulário de review ---------- */
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.campo > label,
+.campo > legend {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0;
+}
+
+/* estrelas: os inputs ficam escondidos e o label vira a estrela */
+.estrelas {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 0.15rem;
+}
+
+.estrelas input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.estrelas label {
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--cor-borda);
+    cursor: pointer;
+}
+
+.estrelas input:checked ~ label,
+.estrelas label:hover,
+.estrelas label:hover ~ label {
+    color: var(--cor-verde);
+}
+
+.estrelas input:focus-visible + label {
+    outline: 2px solid var(--cor-azul);
+    border-radius: 4px;
+}
+
+/* botão de favorito (coração) */
+.coracao {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.coracao input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.coracao span {
+    font-size: 1.6rem;
+    line-height: 1;
+    color: var(--cor-borda);
+}
+
+.coracao input:checked + span {
+    color: var(--cor-laranja);
+}
+
+.coracao input:focus-visible + span {
+    outline: 2px solid var(--cor-azul);
+    border-radius: 4px;
+}
+
+.botoes {
+    display: flex;
+    gap: 0.75rem;
+}
+
+/* listas de filmes e reviews */
+.lista-filmes,
+.lista-reviews {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.lista-filmes li,
+.lista-reviews li {
+    background: var(--cor-painel);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.lista-filmes li:hover {
+    border-color: var(--cor-verde);
+}
+
+.lista-filmes a {
+    display: block;
+    color: var(--cor-titulo);
+    text-decoration: none;
+}
+
+.lista-filmes a span {
+    color: var(--cor-texto);
+}
+
+.lista-reviews strong {
+    color: var(--cor-titulo);
+}
+
+.lista-reviews .nota {
+    color: var(--cor-verde);
+    letter-spacing: 0.1em;
+}
+
+.lista-reviews .coracao-lista {
+    color: var(--cor-laranja);
+}
+
+.lista-reviews p {
+    margin: 0.5rem 0 0.75rem;
+}
+
+.lista-reviews li button {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+}

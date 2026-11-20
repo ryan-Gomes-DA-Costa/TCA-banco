@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/modern-normalize.css">
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/forms.css">
     <script type="module" src="js/components.js"></script>
     <script type="module" src="js/filme.js"></script>
 </head>
@@ -24,16 +25,42 @@
         <ul id="lista_reviews" class="lista-reviews"></ul>
 
         <section id="area_form">
-            <h3 id="titulo_form">Escrever review</h3>
-            <form id="review_Form">
-                <input type="hidden" id="review_id">
-                <input type="number" id="rating" min="1" max="5" placeholder="Nota (1 a 5)" required>
-                <textarea id="review_texto" placeholder="Escreva sua review"></textarea>
-                <label><input type="checkbox" id="heart"> ❤️ Favorito</label>
-                <button type="submit" id="submitBtn">Enviar review</button>
-                <button type="button" id="cancelarBtn" hidden>Cancelar edição</button>
-            </form>
-        </section>
+    <h3 id="titulo_form">Escrever review</h3>
+    <form id="review_Form">
+        <input type="hidden" id="review_id">
+
+        <fieldset class="campo">
+            <legend>Sua nota</legend>
+            <div class="estrelas">
+                <input type="radio" name="rating" id="estrela5" value="5" required>
+                <label for="estrela5" title="5 estrelas">★</label>
+                <input type="radio" name="rating" id="estrela4" value="4">
+                <label for="estrela4" title="4 estrelas">★</label>
+                <input type="radio" name="rating" id="estrela3" value="3">
+                <label for="estrela3" title="3 estrelas">★</label>
+                <input type="radio" name="rating" id="estrela2" value="2">
+                <label for="estrela2" title="2 estrelas">★</label>
+                <input type="radio" name="rating" id="estrela1" value="1">
+                <label for="estrela1" title="1 estrela">★</label>
+            </div>
+        </fieldset>
+
+        <div class="campo">
+            <label for="review_texto">Review</label>
+            <textarea id="review_texto" placeholder="O que você achou do filme?"></textarea>
+        </div>
+
+        <label class="coracao">
+            <input type="checkbox" id="heart">
+            <span>♥</span> Favorito
+        </label>
+
+        <div class="botoes">
+            <button type="submit" id="submitBtn">Enviar review</button>
+            <button type="button" id="cancelarBtn" class="secundario" hidden>Cancelar edição</button>
+        </div>
+    </form>
+</section>
     </main>
     <site-footer></site-footer>
 </body>
