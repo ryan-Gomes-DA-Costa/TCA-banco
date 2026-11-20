@@ -17,7 +17,7 @@ class SiteNav extends HTMLElement {
 
         this.innerHTML = `
             <nav class="site-nav">
-                <a href="index.html">Filmes</a>
+                <a href="lista.html">Filmes</a>
                 ${usuario
                     ? `<span class="nav-usuario">Olá, ${usuario.name}</span>
                        <a href="#" id="sair">Sair</a>`

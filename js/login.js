@@ -26,7 +26,7 @@ login_Form.addEventListener('submit', async (e) => {
 
         // guarda quem está logado
         localStorage.setItem('usuario', JSON.stringify(usuarios[0]));
-        window.location.href = 'reviews.html';
+        window.location.href = 'lista.html';
     } catch (error) {
         console.error(error);
         mensagem.textContent = 'Erro ao fazer login';
