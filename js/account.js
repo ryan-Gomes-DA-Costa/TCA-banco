@@ -40,7 +40,7 @@ async function criar_usuario(e) {
         mensagem.textContent = 'Conta criada com sucesso! Redirecionando para o login...';
         usuario_Form.reset();
         setTimeout(() => {
-            window.location.href = 'login.html';
+            window.location.href = 'index.html';
         }, 1500);
     } catch (error) {
         console.error('Erro ao criar usuário:', error);
