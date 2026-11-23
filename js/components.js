@@ -21,7 +21,7 @@ class SiteNav extends HTMLElement {
                 ${usuario
                     ? `<span class="nav-usuario">Olá, ${usuario.name}</span>
                        <a href="#" id="sair">Sair</a>`
-                    : `<a href="login.html">Login</a>
+                    : `<a href="index.html">Login</a>
                        <a href="account.html">Criar conta</a>`}
             </nav>`;
 
@@ -30,7 +30,7 @@ class SiteNav extends HTMLElement {
             sair.addEventListener('click', (e) => {
                 e.preventDefault();
                 localStorage.removeItem('usuario');
-                window.location.href = 'login.html';
+                window.location.href = 'index.html';
             });
         }
     }

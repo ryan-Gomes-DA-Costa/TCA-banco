@@ -9,7 +9,7 @@ export function getUsuario() {
 export function exigirLogin() {
     const usuario = getUsuario();
     if (!usuario) {
-        window.location.href = 'login.html';
+        window.location.href = 'index.html';
         return null;
     }
     return usuario;
@@ -17,5 +17,5 @@ export function exigirLogin() {
 
 export function sair() {
     localStorage.removeItem('usuario');
-    window.location.href = 'login.html';
+    window.location.href = 'index.html';
 }

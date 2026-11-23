@@ -24,7 +24,7 @@ if (!movie_id) {
 
 // visitante não vê o formulário
 if (!usuario) {
-    area_form.innerHTML = '<p><a href="login.html">Faça login</a> para escrever uma review.</p>';
+    area_form.innerHTML = '<p><a href="index.html">Faça login</a> para escrever uma review.</p>';
 }
 
 // ---------- READ: detalhes do filme ----------
