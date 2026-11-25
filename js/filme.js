@@ -55,9 +55,9 @@ async function carregar_filme() {
         <p><strong>Direção:</strong> ${diretores}</p>
         <p><strong>Elenco:</strong> ${atores}</p>
         <p><strong>Gênero:</strong> ${generos}</p>
-        <p>Duração: ${filme.duration_minutes ?? 'N/A'} minutos</p>
-        <p>Classificação etária: ${filme.age_rating ?? 'N/A'}</p>
-        <p>Idioma: ${filme.language ?? 'N/A'}</p>
+        <p><strong>Duração:</strong> ${filme.duration_minutes ?? 'N/A'} minutos</p>
+        <p><strong>Classificação etária:</strong> ${filme.age_rating ?? 'N/A'}</p>
+        <p><strong>Idioma:</strong> ${filme.language ?? 'N/A'}</p>
     `;
 }
 
