@@ -1,79 +1,80 @@
-// Use DBML to define your database structure
-// Docs: https://dbml.dbdiagram.io/docs
 
+Table movie {
+  id integer [primary key, increment]
+  name varchar(180) [not null]
+  release integer [not null]
+  synopsis text
+  duration_minutes integer
+  age_rating varchar(10)
+  language varchar(50)
+}
 
-Table user {
-  id integer [primary key]
-  username varchar
+Table reviewer {
+  id integer [primary key, increment]
+  name varchar(180) [not null]
+  password varchar(20) [not null, unique]
+  email varchar(180) [not null, unique]
 }
 
 Table director {
-  id integer [primary key]
-  name varchar
+  id integer [primary key, increment]
+  name varchar(180) [not null]
 }
 
 Table movie_director {
-  director_id integer
-  movie_id integer
+  director_id integer [not null]
+  movie_id integer [not null]
+
+  indexes {
+    (director_id, movie_id) [pk]
+  }
 }
+
 Ref: movie_director.director_id > director.id
 Ref: movie_director.movie_id > movie.id
 
 Table actor {
-  id integer [primary key]
-  name varchar
+  id integer [primary key, increment]
+  name varchar(180) [not null]
 }
 
 Table movie_actor {
-  actor_id integer
-  movie_id integer
+  actor_id integer [not null]
+  movie_id integer [not null]
+
+  indexes {
+    (actor_id, movie_id) [pk]
+  }
 }
-Ref: movie_actor.actor_id > actor.id
+
 Ref: movie_actor.movie_id > movie.id
-
-Table movie {
-  id integer [primary key]
-  name varchar
-  synopsis varchar
-  release_date timestamp
-}
-
+Ref: movie_actor.actor_id > actor.id
 
 Table genre {
-  id integer [primary key]
-  name varchar
+  id integer [primary key, increment]
+  name varchar(180) [not null]
 }
 
-Table genre_movie {
-  movie_id integer 
-  genre_id integer 
-}
-Ref: genre_movie.movie_id > movie.id
-Ref: genre_movie.genre_id > genre.id
-
-Table rating {
-  id integer [primary key]
-  user_id integer [not null]
+Table movie_genre {
+  genre_id integer [not null]
   movie_id integer [not null]
-  rating integer 
-  review varchar
-}
-Ref: rating.user_id > user.id
-Ref: rating.movie_id > movie.id
 
-Table like {
-  id integer [primary key]
-  user_id integer [not null]
+  indexes {
+    (genre_id, movie_id) [pk]
+  }
+}
+
+Ref: movie_genre.movie_id > movie.id
+Ref: movie_genre.genre_id > genre.id
+
+Table review {
+  id integer [primary key, increment]
+  reviewer_id integer [not null]
   movie_id integer [not null]
-  like boolean
+  rating integer [note: 'CHECK: rating BETWEEN 0 AND 10']
+  review text
+  heart boolean
 }
-Ref: like.user_id > user.id
-Ref: like.movie_id > movie.id
 
-Table review_like {
-  review_id integer
-  user_id integer
-  like boolean
-}
-Ref: review_like.review_id > rating.id
-Ref: review_like.user_id > user.id
+Ref: review.reviewer_id > reviewer.id
+Ref: review.movie_id > movie.id
