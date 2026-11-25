@@ -44,6 +44,9 @@ async function carregar_filme() {
         detalhes.innerHTML = '<p>Filme não encontrado.</p>';
         return;
     }
+    const generos = filme.genre.map(g => g.name).join(', ') || 'Não informado';
+    const diretores = filme.director.map(d => d.name).join(', ') || 'Não informado';
+    const atores = filme.actor.map(a => a.name).join(', ') || 'Não informado';
 
     document.title = filme.name;
     detalhes.innerHTML = `
