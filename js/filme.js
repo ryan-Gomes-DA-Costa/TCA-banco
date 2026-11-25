@@ -32,7 +32,7 @@ if (!usuario) {
 async function carregar_filme() {
     const { data: filme, error } = await supabase
         .from('movie')
-        .select('id, name, release, synopsis')
+        .select('id, name, release, synopsis, duration_minutes, age_rating, language, director(name), actor(name), genre(name)')
         .eq('id', movie_id)
         .maybeSingle();
 
@@ -49,6 +49,12 @@ async function carregar_filme() {
     detalhes.innerHTML = `
         <h2>${filme.name} (${filme.release})</h2>
         <p>${filme.synopsis ?? 'Sem sinopse.'}</p>
+        <p><strong>Direção:</strong> ${diretores}</p>
+        <p><strong>Elenco:</strong> ${atores}</p>
+        <p><strong>Gênero:</strong> ${generos}</p>
+        <p>Duração: ${filme.duration_minutes ?? 'N/A'} minutos</p>
+        <p>Classificação etária: ${filme.age_rating ?? 'N/A'}</p>
+        <p>Idioma: ${filme.language ?? 'N/A'}</p>
     `;
 }
 
