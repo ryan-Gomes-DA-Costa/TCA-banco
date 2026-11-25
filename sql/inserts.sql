@@ -7,7 +7,7 @@ INSERT INTO movie (name, release, synopsis, duration_minutes, age_rating, langua
  
 ('Clube da Luta', 1999, 'Um homem entediado cria um clube secreto de lutas com um desconhecido carismático.', 139, '18', 'Inglês'),
  
-('Mullholand Drive', 2001, 'Um filme de suspense e mistério que explora os limites da realidade e do sonho.', 147, '18', 'Inglês'),
+('Mullholland Drive', 2001, 'Um filme de suspense e mistério que explora os limites da realidade e do sonho.', 147, '18', 'Inglês'),
  
 ('Fire Walk With Me', 1992, 'Um filme de suspense e mistério que explora os limites da realidade e do sonho.', 135, '18', 'Inglês'),
  
