@@ -2,14 +2,18 @@ CREATE TABLE movie (
   id SERIAL PRIMARY KEY,
   name VARCHAR(180) NOT NULL,
   release INTEGER NOT NULL,
-  synopsis TEXT
+  synopsis TEXT,
+  poster_url VARCHAR(500),
+  duration_minutes INTEGER,
+  age_rating VARCHAR(10),
+  language VARCHAR(50)
 );
 
 CREATE TABLE reviewer (
   id SERIAL PRIMARY KEY,
   name VARCHAR(180) NOT NULL,
-  password VARCHAR(20) UNIQUE,
-  email VARCHAR(180) UNIQUE
+  password VARCHAR(20) NOT NULL UNIQUE,
+  email VARCHAR(180) NOT NULL UNIQUE
 );
 
 create table director (
@@ -55,14 +59,14 @@ CREATE TABLE review (
   id SERIAL PRIMARY KEY,
   reviewer_id INT NOT NULL,
   movie_id INT NOT NULL,
-  rating INTEGER,
+  rating INTEGER CHECK (rating BETWEEN 0 AND 10),
   review TEXT,
   heart BOOLEAN,
   FOREIGN KEY (reviewer_id) REFERENCES reviewer(id),
   FOREIGN KEY (movie_id) REFERENCES movie(id)
 );
 
---b@ncodedAdos
+
 -- git config --local user.name "xxxxxxx"
 -- git config --local user.email "xxxx.gmail.com"
 -- comentário testão
