@@ -55,31 +55,6 @@ async function preencher_filtros() {
 
     filtro_genero.innerHTML += generos.map(g => `<option value="${g.name}">${g.name}</option>`).join('');
 
-    const { data: filmes } = await supabase
-        .from('movie')
-        .select('release')
-        .order('release', { ascending: false });
-
-    let anos = [];
-    for (let i = 0; i < filmes.length; i++) {
-        if (!anos.includes(filmes[i].release)) {
-            anos.push(filmes[i].release);
-        }
-    }
-
-    filtro_ano.innerHTML += anos.map(a => `<option value="${a}">${a}</option>`).join('');
-}
-
-
-async function preencher_filtros() {
-    
-    const { data: generos } = await supabase
-        .from('genre')
-        .select('name')
-        .order('name');
-
-    filtro_genero.innerHTML += generos.map(g => `<option value="${g.name}">${g.name}</option>`).join('');
-
     
     const { data: filmes } = await supabase
         .from('movie')
