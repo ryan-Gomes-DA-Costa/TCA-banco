@@ -3,7 +3,6 @@ CREATE TABLE movie (
   name VARCHAR(180) NOT NULL,
   release INTEGER NOT NULL,
   synopsis TEXT,
-  poster_url VARCHAR(500),
   duration_minutes INTEGER,
   age_rating VARCHAR(10),
   language VARCHAR(50)

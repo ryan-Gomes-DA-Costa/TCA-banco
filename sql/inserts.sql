@@ -1,37 +1,37 @@
-INSERT INTO movie (name, release, synopsis, poster_url, duration_minutes, age_rating, language) VALUES
-('Interestelar', 2014, 'Exploradores viajam por um buraco de minhoca em busca de um novo lar para a humanidade.', 'https://posterflix.com.br/cdn/shop/files/pos-01876-4c8ebd420e08f8359717181254801917-1024-1024.jpg?v=1792176504', 169, '10', 'Inglês'),
-
-('Parasita', 2019, 'Uma família pobre se infiltra aos poucos na vida de uma família rica.', 'https://m.media-amazon.com/images/M/MV5BYjk1Y2U4MjQtY2ZiNS00OWQyLWI3MmYtZWUwNmRjYWRiNWNhXkEyXkFqcGc@._V1_.jpg', 132, '16', 'Coreano'),
-
-('Pulp Fiction', 1994, 'Histórias de criminosos de Los Angeles se cruzam de forma inesperada.','https://cdn.posteritati.com/posters/000/000/050/468/pulp-fiction-md-web.jpg' , 154, '18', 'Inglês'),
-
-('Clube da Luta', 1999, 'Um homem entediado cria um clube secreto de lutas com um desconhecido carismático.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiJkMd5g3PtEdKcDvkflbUrsl8VoSysBa9GyxvFtTe5g&s=10', 139, '18', 'Inglês'),
-
-('Mullholand Drive', 2001, 'Um filme de suspense e mistério que explora os limites da realidade e do sonho.', 'https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.mercadolivre.com.br%2Fmulholland-drive-movie-poster%2Fp%2FMLB2046201274&ved=0CBcQjRxqFwoTCNiL_9fLo5gDFQAAAAAdAAAAABA3&opi=89978449', 147, '18', 'Inglês'),
-
-('Fire Walk With Me', 1992, 'Um filme de suspense e mistério que explora os limites da realidade e do sonho.', 'https://m.media-amazon.com/images/M/MV5BYzJmZGFiMzAtODNhOC00NzAwLWFlMzAtYTQzYmRmYjIwNDgyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', 135, '18', 'Inglês'),
-
-('Lost Highway', 1997, 'Um filme de suspense e mistério que explora os limites da realidade e do sonho.', 'https://m.media-amazon.com/images/M/MV5BNjcyNmM2ODktYzk0Mi00Njk0LTljZGMtNGZhMzI4NmY1NzA1XkEyXkFqcGc@._V1_.jpg', 135, '18', 'Inglês'),
-
-('No Other Choice', 2025, 'um homem de meia-idade chamado Man-su (Lee Byung-hun) é demitido após 25 anos na indústria do papel quando sua empresa é comprada por uma companhia americana. Desesperado para sustentar a família e manter o padrão de vida ao lado da esposa Mi-ri (Son Ye-jin) e dos filhos, ele passa por longos meses de desemprego e decide eliminar literalmente seus concorrentes para conquistar uma nova vaga.', 'https://image.tmdb.org/t/p/original/vc2S0dvgpsM0XfSiXZDMVkRCSSU.jpg', 139, '16', 'Coreano'),
-
-('Oldboy', 2003, 'Após passar 15 anos sequestrado, Oh Dae-su é libertado misteriosamente e inicia uma busca por vingança.', NULL, 120, '18', 'Coreano'),
-
-('Foi Apenas um Acidente', 2025, 'Um mecânico acredita reconhecer em um cliente o homem que o torturou durante sua prisão e procura descobrir a verdade.', NULL, 102, '14', 'Persa'),
-
-('You Can See Everything', 2026, 'Um documentário acompanha Elizabeth Holmes e sua vida antes de começar a cumprir sua sentença de prisão.', NULL, 174, '12', 'Inglês'),
-
-('House', 1977, 'Uma estudante viaja com amigas para visitar sua tia em uma casa isolada, onde acontecimentos sobrenaturais começam a ocorrer.', NULL, 88, NULL, 'Japonês'),
-
-('Martyrs', 2008, 'Anos após escapar de um trauma na infância, Lucie acredita ter encontrado os responsáveis por seu sofrimento e busca vingança.', NULL, 99, '18', 'Francês'),
-
-('Oddity', 2024, 'Uma médium cega visita a casa onde sua irmã foi assassinada, determinada a descobrir o que realmente aconteceu.', NULL, 98, NULL, 'Inglês'),
-
-('Backrooms', 2026, 'Uma passagem misteriosa surge no porão de uma loja de móveis, levando a uma rede aparentemente infinita de corredores.', NULL, 110, NULL, 'Inglês'),
-
-('The Invite', 2026, 'Um casal em crise convida seus misteriosos vizinhos para um jantar que toma rumos inesperados.', NULL, 107, NULL, 'Inglês'),
-
-('Matrix', 1999, 'Neo descobre que a realidade em que vive é uma simulação controlada por máquinas e se junta a um grupo de rebeldes.', NULL, 136, '12', 'Inglês');
+INSERT INTO movie (name, release, synopsis, duration_minutes, age_rating, language) VALUES
+('Interestelar', 2014, 'Exploradores viajam por um buraco de minhoca em busca de um novo lar para a humanidade.', 169, '10', 'Inglês'),
+ 
+('Parasita', 2019, 'Uma família pobre se infiltra aos poucos na vida de uma família rica.', 132, '16', 'Coreano'),
+ 
+('Pulp Fiction', 1994, 'Histórias de criminosos de Los Angeles se cruzam de forma inesperada.', 154, '18', 'Inglês'),
+ 
+('Clube da Luta', 1999, 'Um homem entediado cria um clube secreto de lutas com um desconhecido carismático.', 139, '18', 'Inglês'),
+ 
+('Mullholand Drive', 2001, 'Um filme de suspense e mistério que explora os limites da realidade e do sonho.', 147, '18', 'Inglês'),
+ 
+('Fire Walk With Me', 1992, 'Um filme de suspense e mistério que explora os limites da realidade e do sonho.', 135, '18', 'Inglês'),
+ 
+('Lost Highway', 1997, 'Um filme de suspense e mistério que explora os limites da realidade e do sonho.', 135, '18', 'Inglês'),
+ 
+('No Other Choice', 2025, 'um homem de meia-idade chamado Man-su (Lee Byung-hun) é demitido após 25 anos na indústria do papel quando sua empresa é comprada por uma companhia americana. Desesperado para sustentar a família e manter o padrão de vida ao lado da esposa Mi-ri (Son Ye-jin) e dos filhos, ele passa por longos meses de desemprego e decide eliminar literalmente seus concorrentes para conquistar uma nova vaga.', 139, '16', 'Coreano'),
+ 
+('Oldboy', 2003, 'Após passar 15 anos sequestrado, Oh Dae-su é libertado misteriosamente e inicia uma busca por vingança.', 120, '18', 'Coreano'),
+ 
+('Foi Apenas um Acidente', 2025, 'Um mecânico acredita reconhecer em um cliente o homem que o torturou durante sua prisão e procura descobrir a verdade.', 102, '14', 'Persa'),
+ 
+('You Can See Everything', 2026, 'Um documentário acompanha Elizabeth Holmes e sua vida antes de começar a cumprir sua sentença de prisão.', 174, '12', 'Inglês'),
+ 
+('House', 1977, 'Uma estudante viaja com amigas para visitar sua tia em uma casa isolada, onde acontecimentos sobrenaturais começam a ocorrer.', 88, NULL, 'Japonês'),
+ 
+('Martyrs', 2008, 'Anos após escapar de um trauma na infância, Lucie acredita ter encontrado os responsáveis por seu sofrimento e busca vingança.', 99, '18', 'Francês'),
+ 
+('Oddity', 2024, 'Uma médium cega visita a casa onde sua irmã foi assassinada, determinada a descobrir o que realmente aconteceu.', 98, NULL, 'Inglês'),
+ 
+('Backrooms', 2026, 'Uma passagem misteriosa surge no porão de uma loja de móveis, levando a uma rede aparentemente infinita de corredores.', 110, NULL, 'Inglês'),
+ 
+('The Invite', 2026, 'Um casal em crise convida seus misteriosos vizinhos para um jantar que toma rumos inesperados.', 107, NULL, 'Inglês'),
+ 
+('Matrix', 1999, 'Neo descobre que a realidade em que vive é uma simulação controlada por máquinas e se junta a um grupo de rebeldes.', 136, '12', 'Inglês');
 
 
 
