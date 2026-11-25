@@ -16,6 +16,21 @@
     <site-nav></site-nav>
     <main>
         <h2>Filmes</h2>
+        <form id="filtros" class="filtros">
+            <div class="campo">
+                <label for="filtro_genero">Gênero</label>
+                <select id="filtro_genero">
+                    <option value="">Todos</option>
+                </select>
+            </div>
+            <div class="campo">
+                <label for="filtro_ano">Ano</label>
+                <select id="filtro_ano">
+                    <option value="">Todos</option>
+                </select>
+            </div>
+            <button type="reset" class="secundario" id="limpar_filtros">Limpar</button>
+        </form>
         <div id="mensagem"></div>
         <ul id="lista_filmes" class="lista-filmes"></ul>
     </main>
