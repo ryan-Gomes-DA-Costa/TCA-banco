@@ -1,6 +1,7 @@
-import { listar, criar, atualizar, excluir } from './api.js';
+import { supabase } from './config.js';
 import { getUsuario } from './auth.js';
 
+// ---------- preparação ----------
 const params = new URLSearchParams(window.location.search);
 const movie_id = params.get('id');
 
@@ -29,57 +30,62 @@ if (!usuario) {
 
 // ---------- READ: detalhes do filme ----------
 async function carregar_filme() {
-    try {
-        const dados = await listar(`movie?id=eq.${movie_id}&select=id,name,release,synopsis`);
-        if (dados.length === 0) {
-            detalhes.innerHTML = '<p>Filme não encontrado.</p>';
-            return;
-        }
-        const f = dados[0];
-        document.title = f.name;
-        detalhes.innerHTML = `
-            <h2>${f.name} (${f.release})</h2>
-            <p>${f.synopsis ?? 'Sem sinopse.'}</p>
-        `;
-    } catch (error) {
-        console.error(error);
+    const { data: filme, error } = await supabase
+        .from('movie')
+        .select('id, name, release, synopsis')
+        .eq('id', movie_id)
+        .maybeSingle();
+
+    if (error) {
         mensagem.textContent = `Erro ao carregar filme: ${error.message}`;
+        return;
     }
+    if (!filme) {
+        detalhes.innerHTML = '<p>Filme não encontrado.</p>';
+        return;
+    }
+
+    document.title = filme.name;
+    detalhes.innerHTML = `
+        <h2>${filme.name} (${filme.release})</h2>
+        <p>${filme.synopsis ?? 'Sem sinopse.'}</p>
+    `;
 }
 
 // ---------- READ: reviews do filme ----------
 async function carregar_reviews() {
-    try {
-        const reviews = await listar(
-            `review?movie_id=eq.${movie_id}&select=id,rating,review,heart,reviewer_id,reviewer(name)&order=id.desc`
-        );
+    const { data: reviews, error } = await supabase
+        .from('review')
+        .select('id, rating, review, heart, reviewer_id, reviewer(name)')
+        .eq('movie_id', movie_id)
+        .order('id', { ascending: false });
 
-        if (reviews.length === 0) {
-            lista_reviews.innerHTML = '<li>Ainda não há reviews.</li>';
-            return;
-        }
-
-        lista_reviews.innerHTML = reviews.map(r => {
-            const dono = usuario && usuario.id === r.reviewer_id;
-            return `
-                <li>
-                    <strong>${r.reviewer?.name ?? 'Anônimo'}</strong>
-                    — nota ${r.rating}/5 ${r.heart ? '❤️' : ''}
-                    <p>${r.review ?? ''}</p>
-                    ${dono ? `
-                        <button data-acao="editar" data-id="${r.id}">Editar</button>
-                        <button data-acao="excluir" data-id="${r.id}">Excluir</button>
-                    ` : ''}
-                </li>
-            `;
-        }).join('');
-
-        // guarda os dados para a edição
-        lista_reviews._dados = reviews;
-    } catch (error) {
-        console.error(error);
+    if (error) {
         mensagem.textContent = `Erro ao carregar reviews: ${error.message}`;
+        return;
     }
+    if (reviews.length === 0) {
+        lista_reviews.innerHTML = '<li>Ainda não há reviews.</li>';
+        return;
+    }
+
+    lista_reviews.innerHTML = reviews.map(r => {
+        const dono = usuario && usuario.id === r.reviewer_id;
+        return `
+            <li>
+                <strong>${r.reviewer?.name ?? 'Anônimo'}</strong>
+                — nota ${r.rating}/5 ${r.heart ? '❤️' : ''}
+                <p>${r.review ?? ''}</p>
+                ${dono ? `
+                    <button data-acao="editar" data-id="${r.id}">Editar</button>
+                    <button data-acao="excluir" data-id="${r.id}">Excluir</button>
+                ` : ''}
+            </li>
+        `;
+    }).join('');
+
+    // guarda os dados para usar na edição
+    lista_reviews._dados = reviews;
 }
 
 // ---------- cliques em Editar / Excluir ----------
@@ -89,18 +95,25 @@ lista_reviews.addEventListener('click', async (e) => {
 
     const id = Number(botao.dataset.id);
 
+    // DELETE
     if (botao.dataset.acao === 'excluir') {
         if (!confirm('Excluir esta review?')) return;
-        try {
-            await excluir(`review?id=eq.${id}&reviewer_id=eq.${usuario.id}`);
-            mensagem.textContent = 'Review excluída.';
-            carregar_reviews();
-        } catch (error) {
-            console.error(error);
+
+        const { error } = await supabase
+            .from('review')
+            .delete()
+            .eq('id', id)
+            .eq('reviewer_id', usuario.id);
+
+        if (error) {
             mensagem.textContent = `Erro ao excluir: ${error.message}`;
+            return;
         }
+        mensagem.textContent = 'Review excluída.';
+        carregar_reviews();
     }
 
+    // prepara o formulário para edição
     if (botao.dataset.acao === 'editar') {
         const r = lista_reviews._dados.find(x => x.id === id);
         review_id.value = r.id;
@@ -138,28 +151,37 @@ if (form) {
             heart: heart.checked
         };
 
-        try {
-            if (review_id.value) {
-                // UPDATE
-                await atualizar(`review?id=eq.${review_id.value}&reviewer_id=eq.${usuario.id}`, dados);
-                mensagem.textContent = 'Review atualizada!';
-            } else {
-                // CREATE
-                await criar('review', {
+        let error;
+
+        if (review_id.value) {
+            // UPDATE
+            ({ error } = await supabase
+                .from('review')
+                .update(dados)
+                .eq('id', review_id.value)
+                .eq('reviewer_id', usuario.id));
+        } else {
+            // CREATE
+            ({ error } = await supabase
+                .from('review')
+                .insert({
                     ...dados,
                     reviewer_id: usuario.id,
                     movie_id: Number(movie_id)
-                });
-                mensagem.textContent = 'Review enviada!';
-            }
-            resetar_form();
-            carregar_reviews();
-        } catch (error) {
-            console.error(error);
-            mensagem.textContent = `Erro: ${error.message}`;
+                }));
         }
+
+        if (error) {
+            mensagem.textContent = `Erro: ${error.message}`;
+            return;
+        }
+
+        mensagem.textContent = review_id.value ? 'Review atualizada!' : 'Review enviada!';
+        resetar_form();
+        carregar_reviews();
     });
 }
 
+// ---------- ao abrir a página ----------
 carregar_filme();
 carregar_reviews();
